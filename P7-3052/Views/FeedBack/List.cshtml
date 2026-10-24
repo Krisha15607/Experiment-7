@@ -1,0 +1,48 @@
+﻿@model List<P7_3052_Models.FeedBack>
+@{
+    ViewBag.Title = "View Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_StudentInfo")
+
+<h2>Student Feedback</h2>
+
+<p>Please provide your genuine feedback.</p>
+
+@if (Model.Count == 0)
+{
+    <p>No feedback has been submitted yet.</p>
+}
+else
+{
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Enrollment Number</th>
+            <th>Student Name</th>
+            <th>Subject</th>
+            <th>Rating</th>
+            <th>Comments</th>
+        </tr>
+
+        @foreach (var feedback in Model)
+        {
+            <tr>
+                <td>@feedback.EnrollmentNumber</td>
+                <td>@feedback.StudentName</td>
+                <td>@feedback.Subject</td>
+                <td>@feedback.Rating</td>
+                <td>@feedback.Comments</td>
+            </tr>
+        }
+    </table>
+}
+
+<br />
+
+@Html.ActionLink("Give Another Feedback", "Create", "Feedback")
+
+<br />
+<br />
+
+@Html.ActionLink("Back to Home", "Index", "Feedback")
